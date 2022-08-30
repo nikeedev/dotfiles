@@ -12,7 +12,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
-Plug 'arcticicestudio/nord-vim'
+Plug 'morhetz/gruvbox'
 
 Plug 'ryanoasis/vim-devicons'
 
@@ -20,4 +20,4 @@ call plug#end()
 
 set encoding=UTF-8
 
-colorscheme nord
+colorscheme gruvbox
