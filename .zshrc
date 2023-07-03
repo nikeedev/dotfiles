@@ -109,7 +109,6 @@ alias nvim="$HOME/apps/nvim.appimage"
 export GPG_AGENT_INFO="$(gpgconf --list-dirs agent-socket):0:1"
 export GPG_TTY=$(tty)
 export PATH="/home/nikee/projects/giter:$PATH"
-export OPENAI_TOKEN="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"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
