@@ -16,6 +16,14 @@ require("lspconfig").clangd.setup {
 
 }
 
+--vim.tbl_deep_extend('keep', lsp, {
+--	lsp_name = {
+--		cmd = { 'command' },
+--		filetypes = 'filetype',
+--		name = 'lsp_name',
+--	}
+--})
+
 local util = require "formatter.util"
 
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
@@ -93,24 +101,19 @@ vim.cmd [[
     set ruler
     set wildmode=longest,list,full
     set wildmenu
-    
+    set autoindent
     set wrap
     set laststatus=2
     
     au BufNewFile,BufRead *.v set filetype=vlang
-
-    au VimEnter * 
+ 
+    inoremap <expr> <TAB> pumvisible() ? "<TAB>" : "<C-d>"
 ]]
 
 vim.g.loaded_netrw       = 1
-vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrwPlugin = 1   
 
-
-vim.g.airline_powerline_fonts = 1
-
-require('error-lens').setup(client, {
-    -- options
-})
+require('error-lens').setup(client, {})
 
 local null_ls = require("null-ls")
 
@@ -184,6 +187,5 @@ local ui = require("harpoon.ui")
 vim.keymap.set("n", "<C-d>", function() ui.nav_prev() end)
 
 vim.keymap.set("n", "<C-f>", function() ui.nav_next() end)
-
 
 

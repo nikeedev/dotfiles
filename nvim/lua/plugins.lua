@@ -9,7 +9,6 @@ return require('packer').startup(function(use)
     use 'pangloss/vim-javascript'
     use 'SirVer/ultisnips'
     use 'honza/vim-snippets'
-    use 'tpope/vim-fugitive'
     use 'morhetz/gruvbox'
     use 'universal-ctags/ctags'
     use 'tommcdo/vim-lion'
@@ -31,7 +30,6 @@ return require('packer').startup(function(use)
     }
 
     use { 'ctrlpvim/ctrlp.vim' } -- fuzzy find files
-    use { 'scrooloose/nerdcommenter' }
     use { 'ollykel/v-vim' } 
 
     use {
@@ -52,5 +50,12 @@ return require('packer').startup(function(use)
 
     use {
         'ThePrimeagen/harpoon'
+    }
+
+    use {
+      "startup-nvim/startup.nvim",
+       config = function()
+        require"startup".setup()
+       end
     }
 end)
