@@ -20,47 +20,6 @@ lspconfig.clangd.setup {
 
 }
 
-local util = require "formatter.util"
-
-require("formatter").setup {
-  -- Enable or disable logging
-  logging = true,
-  -- Set the log level
-  log_level = vim.log.levels.WARN,
-  -- All formatter configurations are opt-in
-  filetype = {
-    -- Formatter configurations for filetype "lua" go here
-    -- and will be executed in order
-    lua = {
-      -- "formatter.filetypes.lua" defines default configurations for the
-      -- "lua" filetype
-      require("formatter.filetypes.lua").stylua,
-
-      -- You can also define your own configuration
-      function()
-        -- Supports conditional formatting
-        -- if util.get_current_buffer_file_name() == "special.lua" then
-        --  return nil
-        -- end
-
-        -- Full specification of configurations is down below and in Vim help
-        -- files
-        return {
-          exe = "stylua",
-          args = {
-            "--search-parent-directories",
-            "--stdin-filepath",
-            util.escape_path(util.get_current_buffer_file_path()),
-            "--",
-            "-",
-          },
-          stdin = true,
-        }
-      end
-    }
-  }
-}
-
 vim.cmd [[
     colorscheme gruvbox
     syntax on
@@ -85,6 +44,8 @@ vim.cmd [[
     set autoindent
     set wrap
     set laststatus=2
+    
+    au BufRead,BufNewFile *.rain setfiletype rain
 ]]
 
 vim.g.loaded_netrw       = 1
@@ -93,19 +54,9 @@ vim.g.loaded_netrwPlugin = 1
 
 -- error-lens
 
-require('error-lens').setup(client, {})
-
--- null-ls
-
-local null_ls = require("null-ls")
-
-null_ls.setup({
-    sources = {        
-        null_ls.builtins.diagnostics.eslint,
-        null_ls.builtins.completion.spell
-    },
+require('error-lens').setup(client, {
+  enabled = true,
 })
-
 
 -- Telescope
 
@@ -162,6 +113,15 @@ rt.setup({
     },
 })
 
+require('crates').setup {
+  src = {
+    coq = {
+      enabled = true,
+      name = "crates.nvim",
+   },
+  },
+}
+
 
 -- LSP Diagnostics Options Setup 
 
@@ -192,10 +152,6 @@ vim.diagnostic.config({
     },
 })
 
-vim.cmd([[
-  set signcolumn=yes
-  autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-]])
 
 --- Completion framework
 
@@ -252,6 +208,7 @@ cmp.setup({
     { name = 'buffer', keyword_length = 2 },        -- source current buffer
     { name = 'vsnip', keyword_length = 2 },         -- nvim-cmp source for vim-vsnip 
     { name = 'calc'},                               -- source for math calculation
+    { name = "crates" }, -- Rust crates 
   },
   window = {
       completion = cmp.config.window.bordered(),
@@ -304,6 +261,8 @@ vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 
+vim.keymap.set("n", "<C-Tab>", function() ui.toggle_quick_menu() end)
+vim.keymap.set("n", "<C-S>", function() mark.add_file() end)
 vim.keymap.set("n", "<C-d>", function() ui.nav_prev() end)
 vim.keymap.set("n", "<C-f>", function() ui.nav_next() end)
 
@@ -325,3 +284,9 @@ require 'FTerm'.setup({
 
 vim.keymap.set('n', 't', '<CMD>lua require("FTerm").toggle()<CR>')
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
+
+vim.g.python3_host_prog = 'C:/Users/myftr/AppData/Local/Microsoft/WindowsApps/python3.exe'
+
+vim.g.loaded_ruby_provider = 0
+
+vim.g.mapleader = "."

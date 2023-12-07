@@ -7,7 +7,6 @@ return require('packer').startup(function(use)
 
     use 'ryanoasis/vim-devicons'
     use 'pangloss/vim-javascript'
-    use 'SirVer/ultisnips'
     use 'honza/vim-snippets'
     use 'morhetz/gruvbox'
     use 'universal-ctags/ctags'
@@ -30,19 +29,18 @@ return require('packer').startup(function(use)
         "williamboman/mason-lspconfig.nvim",
     }
 
-    use { 'ctrlpvim/ctrlp.vim' } -- fuzzy find files
     use { 'ollykel/v-vim' } 
 
     use {
-        'chikko80/error-lens.nvim',
-        requires = { 'nvim-telescope/telescope.nvim' }
+        'nvim-telescope/telescope.nvim', tag = '0.1.4',
+        requires = { {'nvim-lua/plenary.nvim'} }
+    }
+
+    use {
+        'chikko80/error-lens.nvim'
     }
 
     use { 'octol/vim-cpp-enhanced-highlight' }
-    use { 'mhartington/formatter.nvim' }
-
-    use { 'nvim-lua/plenary.nvim' }
-    use { 'jose-elias-alvarez/null-ls.nvim' }
 
     use {
         "nvim-telescope/telescope-file-browser.nvim",
@@ -79,4 +77,12 @@ return require('packer').startup(function(use)
     use 'folke/todo-comments.nvim'
 
     use "numToStr/FTerm.nvim"
+
+    use 'dense-analysis/ale' 
+
+    use 'mbbill/undotree'
+
+    use {
+        'saecki/crates.nvim', tag = 'v0.4.0'
+    }
 end)
