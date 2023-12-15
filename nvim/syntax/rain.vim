@@ -1,10 +1,14 @@
+if exists("b:current_syntax")
+    finish
+endif
+
 syntax keyword rainStatement if else match int string float object struct char
 
-syntax match rainComment "\//"
+syntax region rainComment start="//" end="$"
+
 syntax region String   start=+"+    end=+"+         skip=+\\"+
-syn match rainOp display "\%(+\|-\|/\|*\|=\|\^\|&\||\|!\|>\|<\|%\)=\?"
+syn match rainOp display "\%(+\| -\|/\|*\|=\|\^\|&\||\|!\|>\|<\|%\::\|:=\|:\)=\?"
 syn keyword rainBoolean true false 
-syn match rainOp display "\%(||\|::\|:=\|:\)\?"
 
 hi def link rainComment    Comment
 hi def link rainStatement  Statement

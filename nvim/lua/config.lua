@@ -39,12 +39,15 @@ vim.cmd [[
     set mouse=a
     set visualbell
     set ruler
-    set wildmode=longest,list,full
     set wildmenu
+    set wildmode=longest,list,full
     set autoindent
     set wrap
     set laststatus=2
-    
+    set shell=pwsh
+    set shellcmdflag=-command
+    set shellquote=\"
+    set shellxquote=
     au BufRead,BufNewFile *.rain setfiletype rain
 ]]
 
@@ -175,65 +178,65 @@ set signcolumn=yes
 autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
 
--- Completion Plugin Setup
-local cmp = require'cmp'
-cmp.setup({
-  -- Enable LSP snippets
-  snippet = {
-    expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-  mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    -- Add tab support
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    ['<Tab>'] = cmp.mapping.select_next_item(),
-    ['<C-S-f>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    })
-  },
-  -- Installed sources:
-  sources = {
-    { name = 'path' },                              -- file paths
-    { name = 'nvim_lsp', keyword_length = 3 },      -- from language server
-    { name = 'nvim_lsp_signature_help'},            -- display function signatures with current parameter emphasized
-    { name = 'nvim_lua', keyword_length = 2},       -- complete neovim's Lua runtime API such vim.lsp.*
-    { name = 'buffer', keyword_length = 2 },        -- source current buffer
-    { name = 'vsnip', keyword_length = 2 },         -- nvim-cmp source for vim-vsnip 
-    { name = 'calc'},                               -- source for math calculation
-    { name = "crates" }, -- Rust crates 
-  },
-  window = {
-      completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered(),
-  },
-  formatting = {
-      fields = {'menu', 'abbr', 'kind'},
-      format = function(entry, item)
-          local menu_icon ={
-              nvim_lsp = 'λ',
-              vsnip = '⋗',
-              buffer = 'Ω',
-              path = '🖫',
-          }
-          item.menu = menu_icon[entry.source.name]
-          return item
-      end,
-  },
-})
+-- -- Completion Plugin Setup
+-- local cmp = require'cmp'
+-- cmp.setup({
+--   -- Enable LSP snippets
+--   snippet = {
+--     expand = function(args)
+--         vim.fn["vsnip#anonymous"](args.body)
+--     end,
+--   },
+--   mapping = {
+--     ['<C-p>'] = cmp.mapping.select_prev_item(),
+--     ['<C-n>'] = cmp.mapping.select_next_item(),
+--     -- Add tab support
+--     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+--     ['<Tab>'] = cmp.mapping.select_next_item(),
+--     ['<C-S-f>'] = cmp.mapping.scroll_docs(-4),
+--     ['<C-f>'] = cmp.mapping.scroll_docs(4),
+--     ['<C-Space>'] = cmp.mapping.complete(),
+--     ['<C-e>'] = cmp.mapping.close(),
+--     ['<CR>'] = cmp.mapping.confirm({
+--       behavior = cmp.ConfirmBehavior.Insert,
+--       select = true,
+--     })
+--   },
+--   -- Installed sources:
+--   sources = {
+--     { name = 'path' },                              -- file paths
+--     { name = 'nvim_lsp', keyword_length = 3 },      -- from language server
+--     { name = 'nvim_lsp_signature_help'},            -- display function signatures with current parameter emphasized
+--     { name = 'nvim_lua', keyword_length = 2},       -- complete neovim's Lua runtime API such vim.lsp.*
+--     { name = 'buffer', keyword_length = 2 },        -- source current buffer
+--     { name = 'vsnip', keyword_length = 2 },         -- nvim-cmp source for vim-vsnip 
+--     { name = 'calc'},                               -- source for math calculation
+--     { name = "crates" }, -- Rust crates 
+--   },
+--   window = {
+--       completion = cmp.config.window.bordered(),
+--       documentation = cmp.config.window.bordered(),
+--   },
+--   formatting = {
+--       fields = {'menu', 'abbr', 'kind'},
+--       format = function(entry, item)
+--           local menu_icon ={
+--               nvim_lsp = 'λ',
+--               vsnip = '⋗',
+--               buffer = 'Ω',
+--               path = '🖫',
+--           }
+--           item.menu = menu_icon[entry.source.name]
+--           return item
+--       end,
+--   },
+-- })
 
 -- nvim-treesitter
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "allw
-  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml",  },
+  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "v"  },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -246,7 +249,7 @@ require'nvim-treesitter.configs'.setup {
     -- `false` will disable the whole extension
     enable = true,
 
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
   },
   ident = { enable = true }, 
   rainbow = {
@@ -269,23 +272,6 @@ vim.keymap.set("n", "<C-f>", function() ui.nav_next() end)
 -- TODO-commnets
 
 require('todo-comments').setup {}
-
--- FloaTerm
-
-require 'FTerm'.setup({
-  border     = 'single',
-  cmd        = os.getenv('SHELL'),
-  blend      = 0,
-  dimensions = {
-      height = 0.9,
-      width = 0.9,
-  },
-})
-
-vim.keymap.set('n', 't', '<CMD>lua require("FTerm").toggle()<CR>')
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
-
-vim.g.python3_host_prog = 'C:/Users/myftr/AppData/Local/Microsoft/WindowsApps/python3.exe'
 
 vim.g.loaded_ruby_provider = 0
 

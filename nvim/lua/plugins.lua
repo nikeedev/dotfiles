@@ -51,12 +51,12 @@ return require('packer').startup(function(use)
         'ThePrimeagen/harpoon'
     }
 
-    use {
-      "startup-nvim/startup.nvim",
-       config = function()
-        require"startup".setup()
-       end
-    }
+    -- use {
+    --   "startup-nvim/startup.nvim",
+    --    config = function()
+    --     require"startup".setup()
+    --    end
+    -- }
     
     use 'simrat39/rust-tools.nvim'
 
@@ -75,8 +75,6 @@ return require('packer').startup(function(use)
     use 'hrsh7th/vim-vsnip'      
 
     use 'folke/todo-comments.nvim'
-
-    use "numToStr/FTerm.nvim"
 
     use 'dense-analysis/ale' 
 
