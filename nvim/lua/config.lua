@@ -6,18 +6,22 @@ require("mason").setup {
         package_installed = "",
         package_pending = "",
         package_uninstalled = "",
-    },
+      },
     }
 }
 
 require("mason-lspconfig").setup {
-  ensure_installed = { 'clangd' }
+  ensure_installed = { 'clangd', 'rust_analyzer' }
 }
 
 local lspconfig = require("lspconfig")
 
 lspconfig.clangd.setup {
+}
 
+-- V language
+lspconfig.v_analyzer.setup {
+  
 }
 
 local util = require "formatter.util"
@@ -276,7 +280,7 @@ cmp.setup({
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "allw
-  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml",  },
+  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "v"  },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -313,9 +317,17 @@ require('todo-comments').setup {}
 
 -- FloaTerm
 
+local terminal = ''
+if not vim.fn.has('win32') then
+	terminal = os.getenv('SHELL') 
+else 
+	terminal = 'pwsh' 
+end
+
+
 require 'FTerm'.setup({
   border     = 'single',
-  cmd        = os.getenv('SHELL'),
+  cmd        = terminal,
   blend      = 0,
   dimensions = {
       height = 0.9,
