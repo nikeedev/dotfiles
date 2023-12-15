@@ -4,4 +4,9 @@
     "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
     "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
   }
-}
+},
+"workspace.ignoredFolders": [
+  "$HOME",
+  "$HOME/.cargo/**",
+  "$HOME/.rustup/**"
+],
