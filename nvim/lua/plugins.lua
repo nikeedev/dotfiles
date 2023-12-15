@@ -79,6 +79,8 @@ return require('packer').startup(function(use)
     use 'dense-analysis/ale' 
 
     use 'mbbill/undotree'
+    
+    use "numToStr/FTerm.nvim"
 
     use {
         'saecki/crates.nvim', tag = 'v0.4.0'

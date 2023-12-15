@@ -6,22 +6,18 @@ require("mason").setup {
         package_installed = "",
         package_pending = "",
         package_uninstalled = "",
-      },
+    },
     }
 }
 
 require("mason-lspconfig").setup {
-  ensure_installed = { 'clangd', 'rust_analyzer' }
+  ensure_installed = { 'clangd' }
 }
 
 local lspconfig = require("lspconfig")
 
 lspconfig.clangd.setup {
-}
 
--- V language
-lspconfig.v_analyzer.setup {
-  
 }
 
 vim.cmd [[
@@ -272,6 +268,30 @@ vim.keymap.set("n", "<C-Tab>", function() ui.toggle_quick_menu() end)
 vim.keymap.set("n", "<C-S>", function() mark.add_file() end)
 vim.keymap.set("n", "<C-d>", function() ui.nav_prev() end)
 vim.keymap.set("n", "<C-f>", function() ui.nav_next() end)
+
+-- FloaTerm
+
+local terminal = ''
+if not vim.fn.has('win32') then
+	terminal = os.getenv('SHELL') 
+else 
+	terminal = 'pwsh' 
+end
+
+
+require 'FTerm'.setup({
+  border     = 'single',
+  cmd        = terminal,
+  blend      = 0,
+  dimensions = {
+      height = 0.9,
+      width = 0.9,
+  },
+})
+
+vim.keymap.set('n', 't', '<CMD>lua require("FTerm").toggle()<CR>')
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
+
 
 -- TODO-commnets
 
