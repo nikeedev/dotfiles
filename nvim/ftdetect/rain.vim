@@ -1,1 +1,0 @@
-au BufRead,BufNewFile *.rain set filetype=rain
