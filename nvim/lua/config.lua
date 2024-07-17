@@ -1,5 +1,3 @@
-require('plugins')
-
 require("mason").setup {
     ui = {
       icons = {
@@ -19,6 +17,10 @@ local lspconfig = require("lspconfig")
 lspconfig.clangd.setup {
 
 }
+
+if vim.loop.os_uname().sysname == "Windows_NT" then
+  require('nvim-treesitter.install').compilers = { "clang" }
+end
 
 vim.cmd [[
     colorscheme gruvbox
@@ -45,9 +47,6 @@ vim.cmd [[
     set wrap
     set laststatus=2
     set shell=pwsh
-    set shellcmdflag=-command
-    set shellquote=\"
-    set shellxquote=
     au BufRead,BufNewFile *.rain setfiletype rain
 ]]
 
@@ -236,7 +235,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "allw
-  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "v"  },
+  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "cpp", "fish", "http", "hurl", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "v", "html", "jsonc" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -251,11 +250,32 @@ require'nvim-treesitter.configs'.setup {
 
     additional_vim_regex_highlighting = true,
   },
+
+  autotag = {
+    enable = true,
+    filetypes = {
+      'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript',
+      'css', 'lua', 'xml', 'php', 'markdown'
+    },
+  },
+
   ident = { enable = true }, 
   rainbow = {
     enable = true,
   }
 }
+
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  {
+      underline = true,
+      virtual_text = {
+          spacing = 5,
+          severity_limit = 'Warning',
+      },
+      update_in_insert = true,
+  }
+)
 
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
@@ -299,4 +319,3 @@ require('todo-comments').setup {}
 
 vim.g.loaded_ruby_provider = 0
 
-vim.g.mapleader = "."
