@@ -47,7 +47,7 @@ vim.cmd [[
     set wrap
     set laststatus=2
     set shell=pwsh
-    au BufRead,BufNewFile *.rain setfiletype rain
+    au BufRead,BufNewFile *.rain set filetype=rain
 ]]
 
 vim.g.loaded_netrw       = 1

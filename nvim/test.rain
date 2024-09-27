@@ -4,5 +4,12 @@ main :: () {
     println("Hello world!"); 
     return 0;
     'h'
-
-}
+    "hei "
+    default
+    goto
+    break
+    :=
+    ::
+    
+//  
+ }
