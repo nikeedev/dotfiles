@@ -1,15 +1,15 @@
 require("mason").setup {
     ui = {
-      icons = {
-        package_installed = "",
-        package_pending = "",
-        package_uninstalled = "",
-    },
+        icons = {
+            package_installed = "",
+            package_pending = "",
+            package_uninstalled = "",
+        },
     }
 }
 
 require("mason-lspconfig").setup {
-  ensure_installed = { 'clangd' }
+    ensure_installed = { 'clangd' }
 }
 
 local lspconfig = require("lspconfig")
@@ -46,19 +46,12 @@ vim.cmd [[
     set autoindent
     set wrap
     set laststatus=2
-    set shell=pwsh
     au BufRead,BufNewFile *.rain set filetype=rain
 ]]
 
 vim.g.loaded_netrw       = 1
 vim.g.loaded_netrwPlugin = 1   
 
-
--- error-lens
-
-require('error-lens').setup(client, {
-  enabled = true,
-})
 
 -- Telescope
 
@@ -79,8 +72,7 @@ require("telescope").setup {
   defaults = {
     file_ignore_patterns = {
         "^./.git/",
-        "^./target/",
-        "LICENSE*"
+        "^./target/"
     },
     layout_strategy = 'vertical',
     layout_config = { height = 0.95, width = 0.95 },
@@ -289,15 +281,20 @@ vim.keymap.set("n", "<C-S>", function() mark.add_file() end)
 vim.keymap.set("n", "<C-d>", function() ui.nav_prev() end)
 vim.keymap.set("n", "<C-f>", function() ui.nav_next() end)
 
--- FloaTerm
+
+-- FloatTerm
+
+local uname = vim.loop.os_uname().sysname
 
 local terminal = ''
-if not vim.fn.has('win32') then
+
+if uname == 'Linux' then
 	terminal = os.getenv('SHELL') 
 else 
 	terminal = 'pwsh' 
 end
 
+print("my uname is: ", uname)
 
 require 'FTerm'.setup({
   border     = 'single',

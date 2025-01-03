@@ -49,8 +49,6 @@ require("lazy").setup({
         requires = { 'nvim-lua/plenary.nvim' }
     },
 
-    'chikko80/error-lens.nvim',
-
     'octol/vim-cpp-enhanced-highlight',
 
     {
