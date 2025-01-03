@@ -83,7 +83,10 @@ require("lazy").setup({
     'hrsh7th/cmp-buffer',
     'hrsh7th/vim-vsnip',
 
-    'folke/todo-comments.nvim',
+    {
+        'folke/todo-comments.nvim',
+        dependencies = { "nvim-lua/plenary.nvim" }
+    },
 
     -- 'dense-analysis/ale',
 
