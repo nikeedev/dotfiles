@@ -1,0 +1,47 @@
+general {
+    colors = true
+    interval = 5
+}
+
+order += "disk /"
+order += "volume master"
+order += "wireless wlp2s0"
+order += "battery 0"
+order += "time"
+
+wireless wlp2s0 {
+        format_up = "%ip @ %essid (%quality, %bitrate )"
+        format_down = "W: down (Correct wifi chip selected??)"
+}
+
+battery 0 {
+        format = "%status: %percentage"
+        format_down = "No battery"
+        status_chr = "⚡ Charging"
+        status_bat = "🔋 Battery power"
+        status_unk = "? Unknown"
+        status_full = "☻ Fully charged"
+        status_idle = "☻ Idle"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 10
+}
+
+time {
+        format = "%d.%m.%Y %H:%M:%S"
+}
+
+memory {
+        format = "mem allocated: %used / %total"
+}
+
+disk "/" {
+        format = "SSD: %used (%avail)/ %total"
+}
+
+volume master {
+        format = "♪: %volume"
+        format_muted = "♪: muted (%volume)"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}

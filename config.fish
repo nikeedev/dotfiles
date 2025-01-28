@@ -10,6 +10,7 @@ function fish_greeting
     echo Weather report for today:\n
 
     /home/nikee/dev/weather/target/release/weather --short
-
 end
+
+set -x SSH_AUTH_SOCK $HOME/.ssh/ssh-agent.sock
 
