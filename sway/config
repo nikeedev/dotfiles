@@ -16,9 +16,11 @@ set $right l
 # Your preferred terminal emulator
 set $term alacritty
 # Your preferred application launcher
-set $menu wmenu-run
+set $menu fuzzel
 
 set $browser firefox-developer-edition
+
+set $filemanager thunar
 
 ### Output configuration
 #
@@ -74,7 +76,10 @@ input "type:keyboard" {
     bindsym $mod+t exec $term
 
     # Start browser:
-    bindsym $mod+Shift+b exec $browser   
+    bindsym $mod+Shift+b exec $browser  
+    
+    # Start file manager:
+    bindsym $mod+Alt+e exec $filemanager
 
     # Kill focused window
     bindsym $mod+Shift+q kill
