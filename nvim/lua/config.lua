@@ -19,7 +19,7 @@ lspconfig.clangd.setup {
 }
 
 if vim.loop.os_uname().sysname == "Windows_NT" then
-  require('nvim-treesitter.install').compilers = { "clang" }
+  require('nvim-treesitter.install').compilers = { "cl" }
 end
 
 vim.cmd [[
@@ -227,7 +227,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "allw
-  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "cpp", "fish", "http", "hurl", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "v", "html", "jsonc", "haskell" },
+  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "cpp", "fish", "http", "hurl", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "v", "html", "jsonc" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
