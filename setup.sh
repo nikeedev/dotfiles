@@ -13,10 +13,9 @@ fi
 
 ln -sf $HOME/dotfiles/sway/config $HOME/.config/sway/
 
-echo i3status
-if [ ! -d "$HOME/.config/i3status" ]; then
-    mkdir $HOME/.config/i3status
-fi
-ln -sf $HOME/dotfiles/i3status/config $HOME/.config/i3status/
- 
+echo waybar
+
+ln -sf $HOME/dotfiles/waybar/ $HOME/.config/waybar
+
+
 echo done 

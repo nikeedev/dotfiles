@@ -25,7 +25,7 @@ set $filemanager thunar
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/nikee/wallpaper.jpg fill
+output * bg /home/nikee/archlinux.png fill
 #
 # Example configuration:
 #
@@ -61,7 +61,7 @@ output * bg /home/nikee/wallpaper.jpg fill
 # Read `man 5 sway-input` for more information about this section.
 
 input "type:keyboard" {
-	xkb_layout no
+    xkb_layout no
 	xkb_variant nodeadkeys
 }
 
@@ -70,8 +70,12 @@ input "type:keyboard" {
 #
 # Basics:
 #
-    bindsym --to-code $mod+Shift+s exec 'grim -g "$(slurp)" ~/Screenshots/$(date +%Hh_%Mm_%Ss_%d_%B_%Y).png'
+    # Copy to your clipboard
+    bindsym --to-code $mod+Shift+s exec 'grim -g "$(slurp -d)" - | wl-copy'
 
+
+    # Save to Screenshots folder:
+    bindsym --to-code $mod+Alt+s exec 'grim -g "$(slurp -d)" ~/Screenshots/$(date +%Hh_%Mm_%Ss_%d_%B_%Y).png'
     # Start a terminal
     bindsym $mod+t exec $term
 
@@ -230,7 +234,10 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    status_command i3status 
+    swaybar_command waybar
 }
+
+client.focused #6271f7 #6271f7 #282828
+client.unfocused #282828 #282828 #6271f7
 
 include /etc/sway/config.d/*
