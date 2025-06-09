@@ -18,14 +18,14 @@ set $term alacritty
 # Your preferred application launcher
 set $menu fuzzel
 
-set $browser firefox-bin
+set $browser firefox-developer-edition
 
 set $filemanager thunar
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/nikee/archlinux.png fill
+output * bg /home/nikee/wallpaper.png fill
 #
 # Example configuration:
 #

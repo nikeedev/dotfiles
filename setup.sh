@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'Symbolically linking fish, neovim, sway and i3status configs'
+echo 'Symbolically linking fish, neovim, sway and waybar configs'
 echo fish config 
 ln -sf $HOME/dotfiles/config.fish $HOME/.config/fish/
 echo neovim config
