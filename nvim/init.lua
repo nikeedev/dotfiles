@@ -58,15 +58,12 @@ require("lazy").setup({
     },
 
     'ThePrimeagen/harpoon',
-
-    -- {
-    --   "startup-nvim/startup.nvim",
-    --    config = function()
-    --     require"startup".setup()
-    --    end
-    -- }
     
-    'simrat39/rust-tools.nvim',
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^6', -- Recommended
+        lazy = false, -- This plugin is already lazy
+    },
 
     -- Completion framework:
     'hrsh7th/nvim-cmp',

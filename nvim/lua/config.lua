@@ -12,12 +12,6 @@ require("mason-lspconfig").setup {
     ensure_installed = { 'clangd' }
 }
 
-local lspconfig = vim.lsp.config
-
-lspconfig.clangd.setup {
-
-}
-
 if vim.loop.os_uname().sysname == "Windows_NT" then
   require('nvim-treesitter.install').compilers = { "cl" }
 end
@@ -94,18 +88,25 @@ vim.api.nvim_set_keymap(
 
 -- RUST 
 
-local rt = require("rust-tools")
+local bufnr = vim.api.nvim_get_current_buf()
+    vim.keymap.set(
+    "n", 
+    "<leader>a", 
+    function()
+        vim.cmd.RustLsp('codeAction') -- supports rust-analyzer's grouping
+        -- or vim.lsp.buf.codeAction() if you don't want grouping.
+    end,
+    { silent = true, buffer = bufnr }
+)
 
-rt.setup({
-    server = {
-        on_attach = function(_, bufnr)
-            -- Hover actions
-            vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-            -- Code action groups
-            vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-        end,
-    },
-})
+vim.keymap.set(
+    "n", 
+    "K",  -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
+    function()
+        vim.cmd.RustLsp({'hover', 'actions'})
+    end,
+    { silent = true, buffer = bufnr }
+)
 
 require('crates').setup {
   src = {
