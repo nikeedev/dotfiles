@@ -20,7 +20,7 @@ set $menu fuzzel
 
 set $browser firefox-developer-edition
 
-set $filemanager thunar
+set $filemanager nautilus
 
 ### Output configuration
 #

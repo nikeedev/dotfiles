@@ -12,7 +12,7 @@ require("mason-lspconfig").setup {
     ensure_installed = { 'clangd' }
 }
 
-local lspconfig = require("lspconfig")
+local lspconfig = vim.lsp.config
 
 lspconfig.clangd.setup {
 
