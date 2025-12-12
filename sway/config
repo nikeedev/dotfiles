@@ -25,7 +25,7 @@ set $filemanager nautilus
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/nikee/wallpaper.png fill
+output * bg /home/nikee/wallpaper.jpg fill
 #
 # Example configuration:
 #
