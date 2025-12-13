@@ -28,4 +28,8 @@ echo fuzzel
 
 ln -sf $HOME/dotfiles/fuzzel/ $HOME/.config/fuzzel
 
+echo wallpaper
+
+ln -sf $HOME/dotfiles/wallpaper.jpg $HOME/wallpaper.jpg 
+
 echo done 
