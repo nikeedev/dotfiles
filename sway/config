@@ -237,7 +237,7 @@ bar {
     swaybar_command waybar
 }
 
-client.focused #6271f7 #6271f7 #282828
-client.unfocused #282828 #282828 #6271f7
+client.focused #67a0de #67a0de #325878
+client.unfocused #325878 #325878 #67a0de
 
 include /etc/sway/config.d/*
