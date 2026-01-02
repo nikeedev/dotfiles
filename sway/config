@@ -240,4 +240,6 @@ bar {
 client.focused #67a0de #67a0de #325878
 client.unfocused #325878 #325878 #67a0de
 
+font pango:JetBrains Mono Nerd Mono 11
+
 include /etc/sway/config.d/*
