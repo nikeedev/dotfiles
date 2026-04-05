@@ -46,7 +46,7 @@ require("lazy").setup({
     'ollykel/v-vim',
 
     {
-        'nvim-telescope/telescope.nvim', tag = '0.1.4',
+        'nvim-telescope/telescope.nvim', tag = 'v0.2.1',
         requires = { 'nvim-lua/plenary.nvim' }
     },
 
@@ -91,7 +91,7 @@ require("lazy").setup({
     "numToStr/FTerm.nvim",
 
     {
-        'saecki/crates.nvim', tag = 'v0.4.0'
+        'saecki/crates.nvim', tag = 'stable'
     },
 
     {

@@ -9,7 +9,7 @@ require("mason").setup {
 }
 
 require("mason-lspconfig").setup {
-    ensure_installed = { 'clangd' }
+    ensure_installed = { 'clangd', 'arduino-language-server' }
 }
 
 if vim.loop.os_uname().sysname == "Windows_NT" then
@@ -226,12 +226,12 @@ vim.cmd([[
 
 -- nvim-treesitter
 
-require'nvim-treesitter.configs'.setup {
+require'nvim-treesitter.config'.setup {
   -- A list of parser names, or "allw
-  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "cpp", "fish", "http", "hurl", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "v", "html", "jsonc" },
+  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "cpp", "fish", "http", "hurl", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "v", "html", "jsonc", "arduino" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
+  sync_install = true,
 
   -- Automatically install missing parsers when entering buffer
   -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
@@ -251,8 +251,6 @@ require'nvim-treesitter.configs'.setup {
       'css', 'lua', 'xml', 'php', 'markdown'
     },
   },
-
-  ident = { enable = true }, 
   rainbow = {
     enable = true,
   }
@@ -295,7 +293,7 @@ else
 	terminal = 'pwsh' 
 end
 
-print("my uname is: ", uname)
+-- print("my uname is: ", uname)
 
 require 'FTerm'.setup({
   border     = 'single',
