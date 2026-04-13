@@ -110,9 +110,7 @@ require("lazy").setup({
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
         opts = {},
-    }
-
-    { 'glacambre/firenvim', build = ":call firenvim#install(0)" },
+    },
 
 })
 

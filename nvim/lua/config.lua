@@ -226,7 +226,7 @@ vim.cmd([[
 
 -- nvim-treesitter
 
-require'nvim-treesitter.config'.setup {
+require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "allw
   ensure_installed = { "vimdoc", "javascript", "typescript", "c", "cpp", "fish", "http", "hurl", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "v", "html", "jsonc", "arduino" },
 
