@@ -101,10 +101,6 @@ require("lazy").setup({
             vim.g.vimtex_view_method = "zathura"
         end
     },
-<<<<<<< HEAD
-    
-    { 'glacambre/firenvim', build = ":call firenvim#install(0)" },
-=======
 
     {
         'MeanderingProgrammer/render-markdown.nvim',
@@ -116,7 +112,8 @@ require("lazy").setup({
         opts = {},
     }
 
->>>>>>> 650401f7e7e7122f90810743da2b0bcd4e868cd8
+    { 'glacambre/firenvim', build = ":call firenvim#install(0)" },
+
 })
 
 require("config")
