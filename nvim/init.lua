@@ -28,8 +28,6 @@ require("lazy").setup({
     'tommcdo/vim-lion',
     'tpope/vim-surround',
     
-    {'neoclide/coc.nvim', branch = 'release'},
-    
     {         
         'nvim-treesitter/nvim-treesitter',
         prefer_git = false,
@@ -103,6 +101,8 @@ require("lazy").setup({
             vim.g.vimtex_view_method = "zathura"
         end
     },
+    
+    { 'glacambre/firenvim', build = ":call firenvim#install(0)" },
 })
 
 require("config")
