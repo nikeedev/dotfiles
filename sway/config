@@ -73,9 +73,13 @@ input "type:keyboard" {
     # Copy to your clipboard
     bindsym --to-code $mod+Shift+s exec 'grim -g "$(slurp -d)" - | wl-copy'
 
-
     # Save to Screenshots folder:
     bindsym --to-code $mod+Alt+s exec 'grim -g "$(slurp -d)" ~/Screenshots/$(date +%Hh_%Mm_%Ss_%d_%B_%Y).png'
+
+    # Fullscreen screenshot.
+    bindsym --to-code $mod+Ctrl+s exec "grim - | wl-copy"
+
+
     # Start a terminal
     bindsym $mod+t exec $term
 
