@@ -101,8 +101,22 @@ require("lazy").setup({
             vim.g.vimtex_view_method = "zathura"
         end
     },
+<<<<<<< HEAD
     
     { 'glacambre/firenvim', build = ":call firenvim#install(0)" },
+=======
+
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },            -- if you use the mini.nvim suite
+        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
+        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        ---@module 'render-markdown'
+        ---@type render.md.UserConfig
+        opts = {},
+    }
+
+>>>>>>> 650401f7e7e7122f90810743da2b0bcd4e868cd8
 })
 
 require("config")
