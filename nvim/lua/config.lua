@@ -9,12 +9,14 @@ require("mason").setup {
 }
 
 require("mason-lspconfig").setup {
-    ensure_installed = { 'clangd', 'arduino-language-server' }
+    ensure_installed = { 'clangd', 'rust_analyzer' }
 }
 
+--[[
 if vim.loop.os_uname().sysname == "Windows_NT" then
   require('nvim-treesitter.install').compilers = { "cl" }
 end
+--]]
 
 vim.cmd [[
     colorscheme gruvbox
@@ -225,10 +227,10 @@ vim.cmd([[
 -- })
 
 -- nvim-treesitter
-
+--[[
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "allw
-  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "cpp", "fish", "http", "hurl", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "v", "html", "jsonc", "arduino" },
+  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "cpp", "fish", "http", "hurl", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "html", "jsonc" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = true,
@@ -255,6 +257,7 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   }
 }
+--]]
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics,
