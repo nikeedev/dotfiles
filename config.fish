@@ -17,5 +17,6 @@ function fish_greeting
 end
 
 set -x SSH_AUTH_SOCK $HOME/.ssh/ssh-agent.sock
+# set -x XAUTHORITY $HOME/.Xauthority
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /home/nikee/.ghcup/bin # ghcup-env
