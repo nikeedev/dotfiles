@@ -27,17 +27,15 @@ require("lazy").setup({
     'universal-ctags/ctags',
     'tommcdo/vim-lion',
     'tpope/vim-surround',
-    
-    {'neoclide/coc.nvim', branch = 'release'},
-    
+--[[
     {         
         'nvim-treesitter/nvim-treesitter',
-        prefer_git = false,
+        prefer_git = true,
         config = function()
             require('nvim-treesitter.install').update({ with_sync = true })
         end,
     },
-
+--]]
     "neovim/nvim-lspconfig",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
@@ -112,7 +110,7 @@ require("lazy").setup({
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
         opts = {},
-    }
+    },
 
 })
 
