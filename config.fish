@@ -4,6 +4,8 @@ end
 alias cls=clear
 alias sober="flatpak run org.vinegarhq.Sober"
 
+alias get_loc="echo lat, long, alt: 59.46279 5.57334, 72";
+
 fish_add_path /home/nikee/dev/weather/target/release/
 fish_add_path /home/nikee/.local/share/gem/ruby/3.3.0/bin
 fish_add_path /home/nikee/dev/giter/target/release/

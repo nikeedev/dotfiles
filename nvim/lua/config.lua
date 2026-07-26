@@ -9,7 +9,7 @@ require("mason").setup {
 }
 
 require("mason-lspconfig").setup {
-    ensure_installed = { 'clangd', 'rust_analyzer' }
+    ensure_installed = { 'clangd', 'rust_analyzer', "svelte" }
 }
 
 --[[
@@ -43,6 +43,8 @@ vim.cmd [[
     set wrap
     set laststatus=2
     au BufRead,BufNewFile *.rain set filetype=rain
+    au BufRead,BufNewFile *.svelte set filetype=html
+    au BufRead,BufNewFile *.svx set filetype=markdown
 ]]
 
 vim.g.loaded_netrw       = 1
@@ -230,10 +232,10 @@ vim.cmd([[
 --[[
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "allw
-  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "cpp", "fish", "http", "hurl", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "html", "jsonc" },
+  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "cpp", "fish", "http", "hurl", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "html", "jsonc", "svelte" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = true,
+    sync_install = true,
 
   -- Automatically install missing parsers when entering buffer
   -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally

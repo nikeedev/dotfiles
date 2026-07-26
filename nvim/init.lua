@@ -36,6 +36,40 @@ require("lazy").setup({
         end,
     },
 --]]
+
+    {
+        "romus204/tree-sitter-manager.nvim",
+        dependencies = {}, -- tree-sitter CLI must be installed system-wide
+        config = function()
+            require("tree-sitter-manager").setup({
+                
+                ensure_installed = { "vimdoc", "javascript", "typescript", "c", "cpp", "fish", "http", "hurl", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "html", "svelte" },
+                
+                sync_install = true,
+
+                -- Automatically install missing parsers when entering buffer
+                -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+                auto_install = true,
+
+                highlight = {
+                    -- `false` will disable the whole extension
+                    enable = true,
+
+                    additional_vim_regex_highlighting = true,
+                },
+                autotag = {
+                    enable = true,
+                    filetypes = {
+                      'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'css', 'lua', 'xml', 'php', 'markdown'
+                    },
+                },
+                rainbow = {
+                    enable = true,
+                }
+            })
+        end,
+    },
+
     "neovim/nvim-lspconfig",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
