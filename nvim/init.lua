@@ -43,7 +43,7 @@ require("lazy").setup({
         config = function()
             require("tree-sitter-manager").setup({
                 
-                ensure_installed = { "vimdoc", "javascript", "typescript", "c", "cpp", "fish", "http", "hurl", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "html", "svelte" },
+                ensure_installed = { "vimdoc", "javascript", "typescript", "c", "cpp", "fish", "http", "hurl", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "html", "svelte", "go", },
                 
                 sync_install = true,
 

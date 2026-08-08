@@ -241,8 +241,14 @@ bar {
     swaybar_command waybar
 }
 
-client.focused #67a0de #67a0de #325878
-client.unfocused #325878 #325878 #67a0de
+## Old
+# client.focused #67a0de #67a0de #325878
+# client.unfocused #325878 #325878 #67a0de
+
+## New
+client.focused #4468bb #4468bb #2a303f
+client.unfocused #2a303f #2a303f #4468bb 
+
 
 font pango:JetBrains Mono Nerd Mono 11
 
