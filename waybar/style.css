@@ -1,8 +1,8 @@
 /*
 :root {
-#4468bb #2a303f
+#6785cc #2a303f
     --main-color: #2a303f;
-    --back-color: #4468bb;
+    --back-color: #6785cc;
 }
 */
 
@@ -13,12 +13,12 @@
 }
 
 window#waybar.floating {
-    background-color: #4468bb;
+    background-color: #6785cc;
     color: #2a303f;
 }
 
 window#waybar {
-    background-color: #4468bb;
+    background-color: #6785cc;
     border-bottom: 3px solid #28282a;
     color: #2a303f;
     transition-property: background-color;
@@ -49,7 +49,7 @@ window#waybar.chromium {
 
 button {
     /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px #4468bb;
+    box-shadow: inset 0 -3px #6785cc;
     /* Avoid rounded borders under each button name */
     border: none;
     border-radius: 0;
@@ -69,7 +69,7 @@ button:hover {
 #workspaces button {
     padding: 0 5px;
     background-color: #2a303f;
-    color: #4468bb;
+    color: #6785cc;
 
 }
 
@@ -78,7 +78,7 @@ button:hover {
 }
 
 #workspaces button.focused {
-    background-color: #4468bb;
+    background-color: #6785cc;
     color: #2a303f;
     transition-property: color, background-color;
     transition-duration: 0.5s;
@@ -115,7 +115,7 @@ button:hover {
     margin: 5px;
     margin-bottom: 8px;
     color: #2a303f;
-    background-color: #4468bb;
+    background-color: #6785cc;
     border: 1px solid #2a303f;
     border-radius: 5px;
     border-width: 2px;
@@ -139,7 +139,7 @@ button:hover {
 #language:hover,
 #power-profiles-daemon:hover,
 #mpd:hover {
-    color: #4468bb;
+    color: #6785cc;
     background-color: #2a303f;
     transition-property: color, background-color;
     transition-duration: 1s;

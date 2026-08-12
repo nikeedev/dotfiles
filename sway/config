@@ -246,8 +246,8 @@ bar {
 # client.unfocused #325878 #325878 #67a0de
 
 ## New
-client.focused #4468bb #4468bb #2a303f
-client.unfocused #2a303f #2a303f #4468bb 
+client.focused #6785cc #6785cc #2a303f
+client.unfocused #2a303f #2a303f #6785cc 
 
 
 font pango:JetBrains Mono Nerd Mono 11
