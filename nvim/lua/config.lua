@@ -12,12 +12,6 @@ require("mason-lspconfig").setup {
     ensure_installed = { 'clangd', 'rust_analyzer' }
 }
 
---[[
-if vim.loop.os_uname().sysname == "Windows_NT" then
-  require('nvim-treesitter.install').compilers = { "cl" }
-end
---]]
-
 vim.cmd [[
     colorscheme gruvbox
     syntax on
@@ -172,65 +166,67 @@ vim.cmd([[
     autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
 
--- -- Completion Plugin Setup
--- local cmp = require'cmp'
--- cmp.setup({
---   -- Enable LSP snippets
---   snippet = {
---     expand = function(args)
---         vim.fn["vsnip#anonymous"](args.body)
---     end,
---   },
---   mapping = {
---     ['<C-p>'] = cmp.mapping.select_prev_item(),
---     ['<C-n>'] = cmp.mapping.select_next_item(),
---     -- Add tab support
---     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
---     ['<Tab>'] = cmp.mapping.select_next_item(),
---     ['<C-S-f>'] = cmp.mapping.scroll_docs(-4),
---     ['<C-f>'] = cmp.mapping.scroll_docs(4),
---     ['<C-Space>'] = cmp.mapping.complete(),
---     ['<C-e>'] = cmp.mapping.close(),
---     ['<CR>'] = cmp.mapping.confirm({
---       behavior = cmp.ConfirmBehavior.Insert,
---       select = true,
---     })
---   },
---   -- Installed sources:
---   sources = {
---     { name = 'path' },                              -- file paths
---     { name = 'nvim_lsp', keyword_length = 3 },      -- from language server
---     { name = 'nvim_lsp_signature_help'},            -- display function signatures with current parameter emphasized
---     { name = 'nvim_lua', keyword_length = 2},       -- complete neovim's Lua runtime API such vim.lsp.*
---     { name = 'buffer', keyword_length = 2 },        -- source current buffer
---     { name = 'vsnip', keyword_length = 2 },         -- nvim-cmp source for vim-vsnip 
---     { name = 'calc'},                               -- source for math calculation
---     { name = "crates" }, -- Rust crates 
---   },
---   window = {
---       completion = cmp.config.window.bordered(),
---       documentation = cmp.config.window.bordered(),
---   },
---   formatting = {
---       fields = {'menu', 'abbr', 'kind'},
---       format = function(entry, item)
---           local menu_icon ={
---               nvim_lsp = 'λ',
---               vsnip = '⋗',
---               buffer = 'Ω',
---               path = '🖫',
---           }
---           item.menu = menu_icon[entry.source.name]
---           return item
---       end,
---   },
--- })
+-- Completion Plugin Setup
+local cmp = require'cmp'
+cmp.setup({
+  -- Enable LSP snippets
+  snippet = {
+    expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    -- Add tab support
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<C-S-f>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    })
+  },
+  -- Installed sources:
+  sources = {
+    { name = 'path' },                              -- file paths
+    { name = 'nvim_lsp', keyword_length = 3 },      -- from language server
+    { name = 'nvim_lsp_signature_help'},            -- display function signatures with current parameter emphasized
+    { name = 'nvim_lua', keyword_length = 2},       -- complete neovim's Lua runtime API such vim.lsp.*
+    { name = 'buffer', keyword_length = 2 },        -- source current buffer
+    { name = 'vsnip', keyword_length = 2 },         -- nvim-cmp source for vim-vsnip 
+    { name = 'calc'},                               -- source for math calculation
+    { name = "crates" }, -- Rust crates 
+  },
+  window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+  },
+  formatting = {
+      fields = {'menu', 'abbr', 'kind'},
+      format = function(entry, item)
+          local menu_icon ={
+              nvim_lsp = 'λ',
+              vsnip = '⋗',
+              buffer = 'Ω',
+              path = '🖫',
+          }
+          item.menu = menu_icon[entry.source.name]
+          return item
+      end,
+  },
+})
 
 -- nvim-treesitter
+
 --[[
+-- Old treesitter config
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "allw
-  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "cpp", "fish", "http", "hurl", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "html", "jsonc" },
+  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "cpp", "fish", "http", "hurl", "lua", "rust", "toml", "vim", "json", "make", "markdown", "bash", "yaml", "tsx", "css", "glsl", "html", "jsonc", "markdown_inline" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = true,
@@ -257,6 +253,75 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   }
 }
+--]]
+
+-- New treesitter config
+
+--[[
+
+local nvim_treesitter = require("nvim-treesitter")
+
+if vim.loop.os_uname().sysname == "Windows_NT" then
+    require("nvim-treesitter.install").compilers = { "gcc" }
+end
+
+
+nvim_treesitter.install({
+  "vimdoc",
+  "javascript",
+  "typescript",
+  "c",
+  "cpp",
+  "fish",
+  "http",
+  "hurl",
+  "lua",
+  "rust",
+  "toml",
+  "vim",
+  "json",
+  "make",
+  "markdown",
+  "bash",
+  "yaml",
+  "tsx",
+  "css",
+  "glsl",
+  "html",
+  "jsonc",
+  "markdown_inline",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "vimdoc",
+    "javascript",
+    "typescript",
+    "c",
+    "cpp",
+    "fish",
+    "http",
+    "hurl",
+    "lua",
+    "rust",
+    "toml",
+    "vim",
+    "json",
+    "make",
+    "markdown",
+    "bash",
+    "yaml",
+    "tsx",
+    "css",
+    "glsl",
+    "html",
+    "jsonc",
+  },
+  callback = function(args)
+    vim.treesitter.start(args.buf)
+  end,
+})
+
 --]]
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(

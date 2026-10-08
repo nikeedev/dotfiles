@@ -27,15 +27,16 @@ require("lazy").setup({
     'universal-ctags/ctags',
     'tommcdo/vim-lion',
     'tpope/vim-surround',
---[[
+
     {         
         'nvim-treesitter/nvim-treesitter',
         prefer_git = true,
+        branch = "main",
         config = function()
             require('nvim-treesitter.install').update({ with_sync = true })
         end,
     },
---]]
+
     "neovim/nvim-lspconfig",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
@@ -104,7 +105,6 @@ require("lazy").setup({
 
     {
         'MeanderingProgrammer/render-markdown.nvim',
-        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },            -- if you use the mini.nvim suite
         -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
         -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
         ---@module 'render-markdown'
