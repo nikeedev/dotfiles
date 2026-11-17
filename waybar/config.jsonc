@@ -16,7 +16,7 @@
         "sway/window"
     ],
     "modules-right": [
-        "mpd",
+//        "mpd",
 //      "idle_inhibitor",
         "pulseaudio",
         "network",
@@ -173,7 +173,7 @@
       }
     },
     "network": {
-        "interface": "wlp2s0", // (Optional) To force the use of this interface
+        // "interface": "wlp2s0", // (Optional) To force the use of this interface
         "format": "{ifname}",
         "format-wifi": "{essid} ({signalStrength}%)  ",
         "format-ethernet": "{ipaddr}/{cidr} ",

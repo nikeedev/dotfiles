@@ -9,12 +9,13 @@ alias get_loc="echo lat, long, alt: 59.46279 5.57334, 72";
 fish_add_path /home/nikee/dev/weather/target/release/
 fish_add_path /home/nikee/dev/giter/target/release/
 
+alias taras=/home/nikee/dev/taras/taras
 
 function fish_greeting
     echo welcome to the terminal $USER@$hostname!\n
     echo Weather report for today:\n
 
-    weather --short
+    weather --place "møllendalen" --short
 end
 
 set -x SSH_AUTH_SOCK $HOME/.ssh/ssh-agent.sock
