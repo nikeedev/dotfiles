@@ -59,12 +59,17 @@ output * bg /home/nikee/wallpaper.jpg fill
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+# привет мир!!!
+
+#input "type:keyboard" {
+#    xkb_layout no
+#	xkb_variant nodeadkeys
+#}
 
 input "type:keyboard" {
-    xkb_layout no
-	xkb_variant nodeadkeys
+    xkb_layout no,ru
+    xkb_options grp:win_space_toggle
 }
-
 
 ### Key bindings
 #
